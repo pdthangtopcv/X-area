@@ -1,0 +1,7 @@
+.hovered {
+
+}
+.hovered:hover {
+    cursor: pointer;
+    box-shadow: 0 0 14px 2px #8888887a;
+}
