@@ -5,40 +5,34 @@ import {
 import ChooseAnswers from "./ChooseAnswers";
 import {useDispatch, useSelector} from "react-redux";
 import {resetClock, ticking} from "../clock/slice";
-import {useCallback, useMemo, useRef, useState} from "react";
-import {selectClock} from "../clock/selector";
+import {useCallback} from "react";
 
 const AdminView = () => {
-    const [count, setCount] = useState(5);
     console.log('AdminView rendering...');
 
     const dispatch = useDispatch();
 
-    const counter = useSelector(selectClock);
-
-    const countTime = () => {
-        let time = setInterval(function () {
-            setCount(count - 1);
-
-            console.log(count);
-
-            if (count < 1) {
-                clearInterval(time);
+    const startTime = useCallback(() => {
+        let time = 5;
+        dispatch(resetClock(time));
+        const interval = setInterval(() => {
+            dispatch(ticking());
+            time--;
+            if (time < 1) {
+                clearInterval(interval);
             }
         }, 1000);
-    };
-
-
-    const startTime = useCallback(() => {
-        countTime();
-    }, [countTime]);
+        return () => {
+            clearInterval(interval);
+        }
+    }, [dispatch]);
 
     return (
         <div>
             <h1 className='text-center'>AdminView</h1>
             <div className='w-4/5 mx-auto flex border-2 border-indigo-600 border-solid'>
                 <div className='w-8/12 p-5'>
-                    {/*<ChooseAnswers count={}/>*/}
+                    <ChooseAnswers/>
                 </div>
                 <div className='w-4/12 text-center'>
                     <div className='h-auto m-5'>

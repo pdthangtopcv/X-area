@@ -27,16 +27,16 @@ const Login = () => {
                 <h1>Đấu trường X</h1>
             </div>
             <Form.Item
-                label="Username"
-                name="username"
+                label="EID"
+                name="eid"
                 rules={[{ required: true, message: 'Please input your username!' }]}
             >
                 <Input />
             </Form.Item>
 
             <Form.Item
-                label="Password"
-                name="password"
+                label="Access Code"
+                name="access_code"
                 rules={[{ required: true, message: 'Please input your password!' }]}
             >
                 <Input.Password />

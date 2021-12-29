@@ -8,6 +8,8 @@ import AdminView from "./components/AdminView";
 import MainPlayerView from "./components/MainPlayerView";
 import ChooseAnswers from "./components/ChooseAnswers";
 import GetMainInfo from './components/GetMainInfo';
+import Dashboard from "./components/Dashboard";
+import SidePlayerView from "./components/SidePlayerView";
 
 function App() {
   return (
@@ -17,12 +19,13 @@ function App() {
               <Route path="register" element={ <Register/> } />
           </Route>
           <Route path="/admin-view" element={ <AdminView/> }>
-              {/*<Route path="side-player" element={ <SidePlayerView/> } />*/}
-              {/*<Route path='admin-view' element={ <AdminView/> } />*/}
+
           </Route>
+          <Route path="/side-player" element={ <SidePlayerView/> } />
           <Route path="/main-player" element={ <MainPlayerView/>}>
-              <Route path="choose-answers" element={<ChooseAnswers/>} />
+              <Route path="choose-answers" element={<ChooseAnswers />} />
               <Route path="get-main-info" element={<GetMainInfo/>} />
+              <Route path="dashboard" element={<Dashboard/>} />
           </Route>
       </Routes>
   );

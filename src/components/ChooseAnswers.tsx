@@ -6,8 +6,9 @@ import {memo, useCallback} from "react";
 import {atom, useRecoilValue, useSetRecoilState} from "recoil";
 import {ButtonType} from "antd/es/button";
 import './ChooseAnswers.css';
-import {useSelector} from "react-redux";
-import {selectClock} from "../clock/selector";
+import {useDispatch, useSelector} from "react-redux";
+import {selectClock, selectStatusClock} from "../clock/selector";
+import {resetClock, ticking} from "../clock/slice";
 
 const selectedState = atom({
     key: 'optional-selected',
@@ -107,21 +108,24 @@ const SupportAction = () => {
 };
 const ClockBox = () => {
     console.log('clock box rendering ...')
-    const counter = useSelector(selectClock);
+
+    const clock = useSelector(selectClock);
+    console.log('clock: ', clock);
     return (
         <div className='border-2 border-green-400 border-solid rounded-full w-20 h-20 flex items-center justify-center text-3xl'>
-            {counter}
+            {clock}
         </div>
     );
 }
+
 const ChooseAnswers = () => {
     console.log('Choose answer rendering ...');
     return (
         <div>
-            <div className='flex justify-end'>
+            <div className='flex justify-end mb-2'>
                 <ClockBox/>
             </div>
-            <p className='text-xl mb-20 border-2 border-black border-solid py-20'>
+            <p className='text-xl mb-20 border-2 border-black border-solid p-20'>
                 Để kết thúc cho câu hỏi, GM ấn nút: “Show Correct Answer" để hiển thị kết quả.
                 Rồi ấn nút: “Show Players’ Status" để hiển thị trạng thái của các người cùng chơi.
                 Dựa trên, kết quả của người chơi chính để quyết định:

@@ -8,3 +8,8 @@ export const selectClock = createSelector(
     selectClockSelectorState,
     state => state.clock,
 );
+
+export const selectStatusClock = createSelector(
+    selectClockSelectorState,
+    state => state.status,
+)
